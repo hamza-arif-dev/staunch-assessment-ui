@@ -62,7 +62,7 @@ export function useForm() {
   }, [billForm]);
 
   function onReset() {
-    setBillForm(() => ({ ...initBillForm }));
+    setBillForm(() => ({ ...initBillForm, items: [...initBillForm.items] }));
   }
 
   function onChange(
