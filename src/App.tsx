@@ -1,5 +1,6 @@
 import { AppProvider, Box, Center } from "./components";
 import { Logo } from "./assets";
+import { Bill } from "./features";
 
 export default function App() {
   return (
@@ -8,7 +9,7 @@ export default function App() {
         <Logo />
       </Center>
       <Box w="full" h="full" p={6}>
-        Bill Component  
+        <Bill />
       </Box>
     </AppProvider>
   );
