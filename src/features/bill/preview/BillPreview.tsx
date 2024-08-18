@@ -49,8 +49,10 @@ export function BillPreview() {
                   {billingFrom.billingFromAddress.streetAddress}
                 </Text>
                 <Text fontWeight={500}>
-                  {billingFrom.billingFromAddress.city},{" "}
-                  {billingFrom.billingFromAddress.postalCode}
+                  {billingFrom.billingFromAddress.city}
+                  {billingFrom.billingFromAddress.postalCode
+                    ? `, ${billingFrom.billingFromAddress.postalCode}`
+                    : null}
                 </Text>
                 <Text fontWeight={500}>
                   {billingFrom.billingFromAddress.country}
@@ -66,8 +68,10 @@ export function BillPreview() {
                   {billingTo.billingToAddress.streetAddress}
                 </Text>
                 <Text fontWeight={500}>
-                  {billingTo.billingToAddress.city},{" "}
-                  {billingTo.billingToAddress.postalCode}
+                  {billingTo.billingToAddress.city}
+                  {billingTo.billingToAddress.postalCode
+                    ? `, ${billingTo.billingToAddress.postalCode}`
+                    : null}
                 </Text>
                 <Text fontWeight={500}>
                   {billingTo.billingToAddress.country}
