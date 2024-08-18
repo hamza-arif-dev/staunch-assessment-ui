@@ -13,6 +13,7 @@ import {
   NumberInputField,
   Section,
   Select,
+  Stack,
   VStack,
 } from "../../../components";
 import { useBill } from "../context";
@@ -77,185 +78,191 @@ export function BillForm() {
     >
       <VStack spacing={8}>
         <Section title="Bill Form">
-          <HStack spacing={4}>
+          <Stack spacing={4}>
+            <HStack spacing={4}>
+              <FormControl>
+                <FormLabel>Company Name</FormLabel>
+                <Input
+                  name="companyName"
+                  value={billForm.billingFrom.companyName}
+                  onChange={(event) => onInputChange(event, "billingFrom")}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Company Email</FormLabel>
+                <Input
+                  type="email"
+                  name="companyEmail"
+                  value={billForm.billingFrom.companyEmail}
+                  onChange={(event) => onInputChange(event, "billingFrom")}
+                />
+              </FormControl>
+            </HStack>
+            <HStack spacing={4}>
+              <FormControl>
+                <FormLabel>Country</FormLabel>
+                <Select
+                  value={billForm.billingFrom.billingFromAddress.country}
+                  onChange={(value) =>
+                    onSelectInputChange(
+                      { key: "country", value: value ?? "" },
+                      "billingFrom",
+                      "billingFromAddress"
+                    )
+                  }
+                  options={countries}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>City</FormLabel>
+                <Input
+                  name="city"
+                  value={billForm.billingFrom.billingFromAddress.city}
+                  onChange={(event) =>
+                    onInputChange(event, "billingFrom", "billingFromAddress")
+                  }
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Postal Code</FormLabel>
+                <NumberInput
+                  name="postalCode"
+                  value={billForm.billingFrom.billingFromAddress.postalCode}
+                  onChange={(value) =>
+                    onNumberInputChange(
+                      { key: "postalCode", value },
+                      "billingFrom",
+                      "billingFromAddress"
+                    )
+                  }
+                >
+                  <NumberInputField />
+                </NumberInput>
+              </FormControl>
+            </HStack>
             <FormControl>
-              <FormLabel>Company Name</FormLabel>
+              <FormLabel>Street Address</FormLabel>
               <Input
-                name="companyName"
-                value={billForm.billingFrom.companyName}
-                onChange={(event) => onInputChange(event, "billingFrom")}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Company Email</FormLabel>
-              <Input
-                type="email"
-                name="companyEmail"
-                value={billForm.billingFrom.companyEmail}
-                onChange={(event) => onInputChange(event, "billingFrom")}
-              />
-            </FormControl>
-          </HStack>
-          <HStack spacing={4}>
-            <FormControl>
-              <FormLabel>Country</FormLabel>
-              <Select
-                value={billForm.billingFrom.billingFromAddress.country}
-                onChange={(value) =>
-                  onSelectInputChange(
-                    { key: "country", value: value ?? "" },
-                    "billingFrom",
-                    "billingFromAddress"
-                  )
-                }
-                options={countries}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>City</FormLabel>
-              <Input
-                name="city"
-                value={billForm.billingFrom.billingFromAddress.city}
+                name="streetAddress"
+                value={billForm.billingFrom.billingFromAddress.streetAddress}
                 onChange={(event) =>
                   onInputChange(event, "billingFrom", "billingFromAddress")
                 }
               />
             </FormControl>
-            <FormControl>
-              <FormLabel>Postal Code</FormLabel>
-              <NumberInput
-                name="postalCode"
-                value={billForm.billingFrom.billingFromAddress.postalCode}
-                onChange={(value) =>
-                  onNumberInputChange(
-                    { key: "postalCode", value },
-                    "billingFrom",
-                    "billingFromAddress"
-                  )
-                }
-              >
-                <NumberInputField />
-              </NumberInput>
-            </FormControl>
-          </HStack>
-          <FormControl>
-            <FormLabel>Street Address</FormLabel>
-            <Input
-              name="streetAddress"
-              value={billForm.billingFrom.billingFromAddress.streetAddress}
-              onChange={(event) =>
-                onInputChange(event, "billingFrom", "billingFromAddress")
-              }
-            />
-          </FormControl>
+          </Stack>
         </Section>
 
         <Section title="Bill To">
-          <HStack spacing={4}>
+          <Stack spacing={4}>
+            <HStack spacing={4}>
+              <FormControl>
+                <FormLabel>Client's Name</FormLabel>
+                <Input
+                  name="clientName"
+                  value={billForm.billingTo.clientName}
+                  onChange={(event) => onInputChange(event, "billingTo")}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Client's Email</FormLabel>
+                <Input
+                  type="email"
+                  name="clientEmail"
+                  value={billForm.billingTo.clientEmail}
+                  onChange={(event) => onInputChange(event, "billingTo")}
+                />
+              </FormControl>
+            </HStack>
+            <HStack spacing={4}>
+              <FormControl>
+                <FormLabel>Country</FormLabel>
+                <Select
+                  value={billForm.billingTo.billingToAddress.country}
+                  onChange={(value) =>
+                    onSelectInputChange(
+                      { key: "country", value: value ?? "" },
+                      "billingTo",
+                      "billingToAddress"
+                    )
+                  }
+                  options={countries}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>City</FormLabel>
+                <Input
+                  name="city"
+                  value={billForm.billingTo.billingToAddress.city}
+                  onChange={(event) =>
+                    onInputChange(event, "billingTo", "billingToAddress")
+                  }
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Postal Code</FormLabel>
+                <NumberInput
+                  name="postalCode"
+                  value={billForm.billingTo.billingToAddress.postalCode}
+                  onChange={(value) =>
+                    onNumberInputChange(
+                      { key: "postalCode", value },
+                      "billingTo",
+                      "billingToAddress"
+                    )
+                  }
+                >
+                  <NumberInputField />
+                </NumberInput>
+              </FormControl>
+            </HStack>
             <FormControl>
-              <FormLabel>Client's Name</FormLabel>
+              <FormLabel>Street Address</FormLabel>
               <Input
-                name="clientName"
-                value={billForm.billingTo.clientName}
-                onChange={(event) => onInputChange(event, "billingTo")}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>Client's Email</FormLabel>
-              <Input
-                type="email"
-                name="clientEmail"
-                value={billForm.billingTo.clientEmail}
-                onChange={(event) => onInputChange(event, "billingTo")}
-              />
-            </FormControl>
-          </HStack>
-          <HStack spacing={4}>
-            <FormControl>
-              <FormLabel>Country</FormLabel>
-              <Select
-                value={billForm.billingTo.billingToAddress.country}
-                onChange={(value) =>
-                  onSelectInputChange(
-                    { key: "country", value: value ?? "" },
-                    "billingTo",
-                    "billingToAddress"
-                  )
-                }
-                options={countries}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel>City</FormLabel>
-              <Input
-                name="city"
-                value={billForm.billingTo.billingToAddress.city}
+                name="streetAddress"
+                value={billForm.billingTo.billingToAddress.streetAddress}
                 onChange={(event) =>
                   onInputChange(event, "billingTo", "billingToAddress")
                 }
               />
             </FormControl>
-            <FormControl>
-              <FormLabel>Postal Code</FormLabel>
-              <NumberInput
-                name="postalCode"
-                value={billForm.billingTo.billingToAddress.postalCode}
-                onChange={(value) =>
-                  onNumberInputChange(
-                    { key: "postalCode", value },
-                    "billingTo",
-                    "billingToAddress"
-                  )
-                }
-              >
-                <NumberInputField />
-              </NumberInput>
-            </FormControl>
-          </HStack>
-          <FormControl>
-            <FormLabel>Street Address</FormLabel>
-            <Input
-              name="streetAddress"
-              value={billForm.billingTo.billingToAddress.streetAddress}
-              onChange={(event) =>
-                onInputChange(event, "billingTo", "billingToAddress")
-              }
-            />
-          </FormControl>
+          </Stack>
         </Section>
 
         <Section>
-          <HStack spacing={4}>
+          <Stack spacing={4}>
+            <HStack spacing={4}>
+              <FormControl>
+                <FormLabel>Invoice Date</FormLabel>
+                <DatePicker
+                  name="invoiceDate"
+                  value={billForm.invoiceDate}
+                  onChange={onInputChange}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>payment Terms</FormLabel>
+                <Select
+                  value={billForm.paymentTerms}
+                  onChange={(value) =>
+                    onSelectInputChange({
+                      key: "paymentTerms",
+                      value: value ?? "",
+                    })
+                  }
+                  options={paymentTerms}
+                />
+              </FormControl>
+            </HStack>
             <FormControl>
-              <FormLabel>Invoice Date</FormLabel>
-              <DatePicker
-                name="invoiceDate"
-                value={billForm.invoiceDate}
+              <FormLabel>Project Description</FormLabel>
+              <Input
+                name="projectDescription"
+                value={billForm.projectDescription}
                 onChange={onInputChange}
               />
             </FormControl>
-            <FormControl>
-              <FormLabel>payment Terms</FormLabel>
-              <Select
-                value={billForm.paymentTerms}
-                onChange={(value) =>
-                  onSelectInputChange({
-                    key: "paymentTerms",
-                    value: value ?? "",
-                  })
-                }
-                options={paymentTerms}
-              />
-            </FormControl>
-          </HStack>
-          <FormControl>
-            <FormLabel>Project Description</FormLabel>
-            <Input
-              name="projectDescription"
-              value={billForm.projectDescription}
-              onChange={onInputChange}
-            />
-          </FormControl>
+          </Stack>
         </Section>
 
         <Section title="Items List">

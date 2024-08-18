@@ -13,6 +13,7 @@ export {
   Input,
   NumberInput,
   NumberInputField,
+  Stack,
   StackDivider,
   Text,
   VStack,
