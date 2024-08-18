@@ -1,4 +1,4 @@
-import { ChakraProvider, StackDivider, VStack } from "@chakra-ui/react";
+import { ChakraProvider, VStack } from "@chakra-ui/react";
 import { theme } from "./theme";
 
 export type AppProviderProps = {
@@ -10,12 +10,7 @@ export function AppProvider(props: AppProviderProps) {
 
   return (
     <ChakraProvider theme={theme}>
-      <VStack
-        w="full"
-        h="full"
-        mt={2}
-        divider={<StackDivider borderColor="gray.250" />}
-      >
+      <VStack w="full" h="full">
         {children}
       </VStack>
     </ChakraProvider>

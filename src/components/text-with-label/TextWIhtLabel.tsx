@@ -9,11 +9,11 @@ export function TextWithLabel(props: TextWithLabelProps) {
   const { label, text } = props;
 
   return (
-    <VStack align="flex-start" spacing={1}>
-      <Text fontSize="2xl" fontWeight={400}>
+    <VStack w="full" align="flex-start" spacing={2}>
+      <Text color="gray.550" fontSize="md" fontWeight={400}>
         {label}
       </Text>
-      <Text color="gray.450" fontSize="xs" fontWeight={400}>
+      <Text fontSize="md" fontWeight={500}>
         {text}
       </Text>
     </VStack>
