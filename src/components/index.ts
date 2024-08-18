@@ -3,6 +3,7 @@ export {
   Button,
   Card,
   Center,
+  Divider,
   FormControl,
   FormLabel,
   FormErrorMessage,

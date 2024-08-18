@@ -21,9 +21,13 @@ export function BillLayout() {
           <Button variant="primary">Save</Button>
         </ButtonGroup>
       </HStack>
-      <HStack mt={6} justifyContent="space-between">
-        <BillForm />
-        <BillPreview />
+      <HStack align="stretch " mt={6} spacing={6}>
+        <Box flex={1}>
+          <BillForm />
+        </Box>
+        <Box flex={1}>
+          <BillPreview />
+        </Box>
       </HStack>
     </Box>
   );

@@ -42,7 +42,7 @@ export function useForm() {
     ],
   });
 
-  const taxRate = 10;
+  const taxRate = "10";
 
   const { subTotal, totalAmount } = useMemo(() => {
     const { items } = billForm;
@@ -50,11 +50,11 @@ export function useForm() {
       (previous, current) => previous + Number(current.totalPrice),
       0
     );
-    const totalAmount = subTotal - subTotal / taxRate;
+    const totalAmount = subTotal - subTotal / Number(taxRate);
 
     return {
-      subTotal: subTotal.toString(),
-      totalAmount: totalAmount.toString(),
+      subTotal: subTotal.toFixed(2),
+      totalAmount: totalAmount.toFixed(2),
     };
   }, [billForm]);
 
@@ -134,7 +134,7 @@ export function useForm() {
         newState.items[index].totalPrice = (
           Number(newState.items[index].price) *
           Number(newState.items[index].quantity)
-        ).toString();
+        ).toFixed(2);
       }
       return newState;
     });
@@ -143,6 +143,7 @@ export function useForm() {
   return {
     billForm,
     subTotal,
+    taxRate,
     totalAmount,
     onChange,
     addItem,
