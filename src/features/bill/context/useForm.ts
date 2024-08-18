@@ -6,57 +6,64 @@ import {
   Item,
 } from "../types";
 
-export function useForm() {
-  const [billForm, setBillForm] = useState<Billing>({
-    billingFrom: {
-      companyName: "",
-      companyEmail: "",
-      billingFromAddress: {
-        city: "",
-        country: "",
-        postalCode: "",
-        streetAddress: "",
-      },
+const initBillForm: Billing = {
+  billingFrom: {
+    companyName: "",
+    companyEmail: "",
+    billingFromAddress: {
+      city: "",
+      country: "",
+      postalCode: "",
+      streetAddress: "",
     },
-    billingTo: {
-      clientEmail: "",
-      clientName: "",
-      billingToAddress: {
-        city: "",
-        country: "",
-        postalCode: "",
-        streetAddress: "",
-      },
+  },
+  billingTo: {
+    clientEmail: "",
+    clientName: "",
+    billingToAddress: {
+      city: "",
+      country: "",
+      postalCode: "",
+      streetAddress: "",
     },
-    invoiceDate: "",
-    paymentTerms: "",
-    projectDescription: "",
+  },
+  invoiceDate: "",
+  paymentTerms: "",
+  projectDescription: "",
+  items: [
+    {
+      name: "",
+      price: "",
+      quantity: "",
+      totalPrice: "",
+    },
+  ],
+};
 
-    items: [
-      {
-        name: "",
-        price: "",
-        quantity: "",
-        totalPrice: "",
-      },
-    ],
-  });
+export function useForm() {
+  const [billForm, setBillForm] = useState<Billing>(initBillForm);
 
   const taxRate = "10";
 
-  const { subTotal, totalAmount } = useMemo(() => {
+  const billTotalInfo = useMemo(() => {
     const { items } = billForm;
     const subTotal = items.reduce(
       (previous, current) => previous + Number(current.totalPrice),
       0
     );
-    const totalAmount = subTotal - subTotal / Number(taxRate);
+    const tax = subTotal / Number(taxRate);
+    const totalAmount = subTotal + tax;
 
     return {
       subTotal: subTotal.toFixed(2),
+      tax: tax.toFixed(2),
       totalAmount: totalAmount.toFixed(2),
     };
   }, [billForm]);
+
+  function onReset() {
+    setBillForm(() => ({ ...initBillForm }));
+  }
 
   function onChange(
     keyValue: {
@@ -142,9 +149,11 @@ export function useForm() {
 
   return {
     billForm,
-    subTotal,
-    taxRate,
-    totalAmount,
+    billTotalInfo: {
+      ...billTotalInfo,
+      taxRate,
+    },
+    onReset,
     onChange,
     addItem,
     removeItem,

@@ -33,9 +33,37 @@ export type Billing = {
   items: Item[];
 };
 
-export type BillingPayload = Billing & {
-  subTotal: string;
-  totalAmount: string;
+export type BillingPayload = {
+  createInvoiceAttributes: {
+    invoiceDate: string;
+    paymentTerms: string;
+    projectDescription: string;
+    billingToAttributes: {
+      clientName: string;
+      clientEmail: string;
+      billingToAddressAttributes: {
+        streetAddress: string;
+        city: string;
+        country: string;
+        postalCode: string;
+      };
+    };
+    billingFromAttributes: {
+      companyName: string;
+      companyEmail: string;
+      billingFromAddressAttributes: {
+        streetAddress: string;
+        city: string;
+        country: string;
+        postalCode: string;
+      };
+    };
+    itemAttributes: {
+      name: string;
+      quantity: number;
+      price: number;
+    }[];
+  };
 };
 
 export type BillingFromOrTo = "billingFrom" | "billingTo";
