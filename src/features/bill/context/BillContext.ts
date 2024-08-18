@@ -8,9 +8,13 @@ import {
 
 type BillContextValue = {
   billForm: Billing;
-  subTotal: string;
-  taxRate: string;
-  totalAmount: string;
+  billTotalInfo: {
+    subTotal: string;
+    tax: string;
+    taxRate: string;
+    totalAmount: string;
+  };
+  onReset: () => void;
   onChange: (
     keyValue: { key: string; value: string },
     parentKey?: BillingFromOrTo,

@@ -1,17 +1,19 @@
 import { Card, Divider, HStack, Text, VStack } from "../../../components";
 import { TextWithLabel } from "../../../components/text-with-label/TextWIhtLabel";
+import { paymentTerms } from "../api/data";
 import { useBill } from "../context";
 
 export function BillPreview() {
-  const { billForm, subTotal, taxRate, totalAmount } = useBill();
+  const { billForm, billTotalInfo } = useBill();
   const {
     billingFrom,
     billingTo,
     invoiceDate,
-    paymentTerms,
+    paymentTerms: paymentTerm,
     projectDescription,
     items,
   } = billForm;
+  const { subTotal, taxRate, totalAmount } = billTotalInfo;
 
   return (
     <Card
@@ -28,7 +30,7 @@ export function BillPreview() {
         <Text fontSize="2xl" fontWeight={600}>
           Preview
         </Text>
-        <Card w="full" h="full" borderRadius="3xl" boxShadow="none" p={6}>
+        <Card w="full" h="full" borderRadius="3xl" boxShadow="lg" p={6}>
           <VStack spacing={6} align="flex-start">
             <Text fontSize="xl" fontWeight={600}>
               New Invoice
@@ -36,7 +38,13 @@ export function BillPreview() {
             <Divider borderColor="gray.250" />
             <HStack w="full" spacing={4}>
               <TextWithLabel label="Invoice Date" text={invoiceDate} />
-              <TextWithLabel label="Payment Terms" text={paymentTerms} />
+              <TextWithLabel
+                label="Payment Terms"
+                text={
+                  paymentTerms.find((item) => paymentTerm === item.value)
+                    ?.label ?? ""
+                }
+              />
             </HStack>
             <HStack w="full" spacing={4}>
               <VStack w="full" align="flex-start" spacing={2}>
@@ -131,7 +139,7 @@ export function BillPreview() {
                   Subtotal
                 </Text>
                 <Text w="full" flex={2} align="end" fontWeight={600}>
-                  {subTotal}
+                  {subTotal ? `$ ${subTotal}` : null}
                 </Text>
               </HStack>
               <HStack w="full">
@@ -162,7 +170,7 @@ export function BillPreview() {
                   fontSize="xl"
                   fontWeight={600}
                 >
-                  {totalAmount}
+                  {totalAmount ? `$ ${totalAmount}` : null}
                 </Text>
               </HStack>
             </VStack>
