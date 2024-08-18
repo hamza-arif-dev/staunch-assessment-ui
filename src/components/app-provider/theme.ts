@@ -37,6 +37,7 @@ export const theme = extendTheme({
       100: "#ae94e7",
     },
     gray: {
+      850: "#344054",
       750: "#555555",
       650: "#8E8E8E",
       550: "#76787D",
@@ -46,5 +47,14 @@ export const theme = extendTheme({
       150: "#F5F5F5",
     },
   },
-  components: { Button: buttonTheme },
+  components: {
+    Button: buttonTheme,
+    FormLabel: {
+      baseStyle: {
+        color: "gray.850",
+        fontSize: "sm",
+        fontWeight: 500,
+      },
+    },
+  },
 });
